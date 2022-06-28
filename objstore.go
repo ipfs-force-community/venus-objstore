@@ -16,33 +16,21 @@ var (
 	ErrObjectNotFound              = fmt.Errorf("object not found")
 )
 
-type CompactConfig struct {
-	Name string
-	Path string
-}
-
-func (cc CompactConfig) ToConfig() Config {
-	return Config{
-		CompactConfig: cc,
-	}
-}
-
 type Config struct {
-	CompactConfig
+	Name     string
+	Path     string
+	Meta     map[string]string
 	Strict   bool
 	ReadOnly bool
 	Weight   uint
-	Meta     map[string]string
 }
 
 func DefaultConfig(path string, readonly bool) Config {
 	return Config{
-		CompactConfig: CompactConfig{
-			Path: path,
-		},
+		Path:     path,
+		Meta:     map[string]string{},
 		ReadOnly: readonly,
 		Weight:   1,
-		Meta:     map[string]string{},
 	}
 }
 
