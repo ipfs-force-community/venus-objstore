@@ -48,6 +48,8 @@ type InstanceInfo struct {
 }
 
 type Store interface {
+	Type() string
+	Version() string
 	Instance(context.Context) string
 	InstanceConfig(ctx context.Context) Config
 	InstanceInfo(ctx context.Context) (InstanceInfo, error)
